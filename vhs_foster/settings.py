@@ -57,7 +57,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'foster' / 'templates',  # Add this line to point to your templates folder
+            BASE_DIR / 'foster' / 'templates' / 'foster',  # Correct path
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -70,6 +70,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'vhs_foster.wsgi.application'
 
