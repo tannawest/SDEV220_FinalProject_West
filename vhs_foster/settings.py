@@ -123,6 +123,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
+    BASE_DIR / 'foster/static',
 ]
 # Location for static files on the server
 STATIC_ROOT = BASE_DIR / 'staticfiles'
