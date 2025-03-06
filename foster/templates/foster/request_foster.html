@@ -4,11 +4,15 @@
     <title>Request Foster for {{ pet.name }}</title>
 </head>
 <body>
-    <h1>Request Foster for {{ pet.name }}</h1>
+    <h1>Request to Foster {{ pet.name }}</h1>
+    
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit Request</button>
-    </form>    
+    </form>
+
+    <!-- Button to go back to the pet list -->
+    <a href="{% url 'foster:pet_list' %}" class="btn btn-secondary mt-4">Back to Pet List</a>
 </body>
 </html>

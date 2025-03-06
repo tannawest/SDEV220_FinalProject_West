@@ -5,12 +5,23 @@
 </head>
 <body>
     <h1>Foster Families</h1>
+
+    <!-- List of Foster Families -->
     <ul>
         {% for family in foster_families %}
             <li>{{ family.name }} - {{ family.address }}</li>
         {% endfor %}
     </ul>
-    <form action="{% url 'home' %}" method="get" class="mt-4">
+
+    <!-- Button to Add a New Foster Family -->
+    <form action="{% url 'foster:add_foster_family' %}" method="get" class="mt-4">
+        <button type="submit" class="btn btn-primary w-100" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px;">
+            Add a New Family
+        </button>
+    </form>
+
+    <!-- Return to Home Button (already present in your code) -->
+    <form action="{% url 'foster:home' %}" method="get" class="mt-4">
         <button type="submit" class="btn btn-primary w-100" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px;">
             Return to Home
         </button>

@@ -8,13 +8,19 @@
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Submit</button>
+        
+        <!-- Button to Add Pet and go to Pet List -->
+        <button type="submit" name="action" value="add_pet">Add Pet</button>
+        
+        <!-- Button to Add Another Pet and stay on the form -->
+        <button type="submit" name="action" value="add_another_pet">Add Another Pet</button>
     </form>
-    <form action="{% url 'home' %}" method="get" class="mt-4">
+
+    <!-- Return to Home Button -->
+    <form action="{% url 'foster:home' %}" method="get" class="mt-4">
         <button type="submit" class="btn btn-primary w-100" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px;">
             Return to Home
         </button>
     </form>
 </body>
 </html>
-

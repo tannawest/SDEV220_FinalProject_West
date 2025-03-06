@@ -5,12 +5,25 @@
 </head>
 <body>
     <h1>Pet List</h1>
+    
+    <!-- Button to Add a New Pet -->
+    <a href="{% url 'foster:add_pet' %}" class="btn btn-primary mt-4">Add a New Pet</a>
+    
+    <!-- List of Pets with Foster Request Links -->
     <ul>
         {% for pet in pets %}
-            <li>{{ pet.name }} - {{ pet.species }}</li>
+            <li>
+                {{ pet.name }} - {{ pet.species }}
+                
+                <!-- Link to request fostering for this pet -->
+                <a href="{% url 'foster:request_foster' pet.id %}">Request to Foster</a>
+            </li>
         {% endfor %}
     </ul>
-    <a href="{% url 'home' %}" class="btn btn-primary mt-4">Return to Home</a>
+
+    <!-- Return to Home Button -->
+    <a href="{% url 'foster:home' %}" class="btn btn-primary mt-4">Return to Home</a>
 </body>
 </html>
+
 

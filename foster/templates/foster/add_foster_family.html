@@ -5,12 +5,21 @@
 </head>
 <body>
     <h1>Add a New Foster Family</h1>
+
+    <!-- Form to Add a New Foster Family -->
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Submit</button>
+
+        <!-- Add Family Button: Submits the form and redirects to the foster family list -->
+        <button type="submit" name="action" value="add_family">Add Family</button>
+
+        <!-- Add Another Family Button: Submits the form and redirects to another blank form to add another family -->
+        <button type="submit" name="action" value="add_another_family">Add Another Family</button>
     </form>
-    <form action="{% url 'home' %}" method="get" class="mt-4">
+
+    <!-- Return to Home Button (already present in your code) -->
+    <form action="{% url 'foster:home' %}" method="get" class="mt-4">
         <button type="submit" class="btn btn-primary w-100" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px;">
             Return to Home
         </button>

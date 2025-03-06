@@ -1,19 +1,28 @@
-from django.shortcuts import render, redirect
-from .models import Pet, FosterFamily
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import FosterRequestForm, FosterFamilyForm, PetForm
+from .models import Pet, FosterFamily
 
 def home(request):
     return render(request, 'foster/home.html')
 
 def add_foster_family(request):
-    form = FosterFamilyForm()
     if request.method == 'POST':
         form = FosterFamilyForm(request.POST)
+        
         if form.is_valid():
+            # Save the new foster family
             form.save()
-            if 'add_another' in request.POST:
-                return redirect('add_foster_family')  # Stay on the form to add another family
-            return redirect('foster_family_list')  # Redirect to the foster family list
+            
+            # Check if the "Add Another Family" button was clicked
+            if request.POST.get('action') == 'add_another_family':
+                # If "Add Another Family" clicked, reload the form to add another family
+                return redirect('foster:add_foster_family')
+            else:
+                # If "Add Family" clicked, redirect to the foster family list
+                return redirect('foster:foster_family_list')
+    else:
+        form = FosterFamilyForm()
+
     return render(request, 'foster/add_foster_family.html', {'form': form})
 
 
@@ -26,16 +35,17 @@ def foster_family_list(request):
     return render(request, 'foster/foster_family_list.html', {'foster_families': foster_families})
 
 def request_foster(request, pet_id):
-    pet = Pet.objects.get(id=pet_id)
+    pet = get_object_or_404(Pet, id=pet_id)  # Get the pet by id
+    
     if request.method == 'POST':
         form = FosterRequestForm(request.POST)
         if form.is_valid():
-            foster_request = form.save(commit=False)  # Don't save yet
-            foster_request.pet = pet  # Link the pet to the foster request
-            foster_request.save()  # Now save the foster request with the pet linked
-            return redirect('pet_list')
+            # Save the foster request (you can implement your logic here)
+            form.save()
+            return redirect('foster:pet_list')  # Redirect back to the pet list after request
     else:
         form = FosterRequestForm()
+
     return render(request, 'foster/request_foster.html', {'form': form, 'pet': pet})
 
 def edit_pet(request, pet_id):
@@ -52,11 +62,20 @@ def edit_pet(request, pet_id):
 def add_pet(request):
     if request.method == 'POST':
         form = PetForm(request.POST)
+        
         if form.is_valid():
-            form.save()
-            if 'add_another' in request.POST:
-                return redirect('add_pet')  # Redirect back to the form to add another pet
-            return redirect('pet_list')  # Redirect to the pet list if not adding another pet
+            form.save()  # Save the new pet
+            
+            action = request.POST.get('action')  # Get the action from the button clicked
+
+            if action == 'add_pet':
+                # If 'Add Pet' clicked, redirect to pet list page
+                return redirect('foster:pet_list')
+            elif action == 'add_another_pet':
+                # If 'Add Another Pet' clicked, clear the form and stay on the page
+                form = PetForm()  # Reset the form for another entry
+                return render(request, 'foster/add_pet.html', {'form': form})
     else:
-        form = PetForm()
+        form = PetForm()  # If GET request, show an empty form
+    
     return render(request, 'foster/add_pet.html', {'form': form})
