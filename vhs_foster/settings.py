@@ -57,6 +57,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
+            BASE_DIR / 'foster' / 'templates',  # Add this line to point to your templates folder
         ],
         'APP_DIRS': True,
         'OPTIONS': {
