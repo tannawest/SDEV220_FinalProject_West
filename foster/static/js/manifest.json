@@ -1,0 +1,15 @@
+{
+    "version": "1.0.0",
+    "files": {
+      "css": [
+        "/static/css/style.css"
+      ],
+      "js": [
+        "/static/js/script.js"
+      ],
+      "images": [
+        "/static/images/logo.png"
+      ]
+    }
+  }
+  
