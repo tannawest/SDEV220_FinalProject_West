@@ -126,7 +126,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'foster/static',
 ]
 # Location for static files on the server
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'foster' / 'static'
 
 # Media files (uploads by users)
 MEDIA_URL = '/media/'
