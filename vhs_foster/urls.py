@@ -1,10 +1,13 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from foster import views
+
+app_name = 'foster'
 
 urlpatterns = [
     path('', views.home, name='home'),
     path('admin/', admin.site.urls),
+    path('foster/', include('foster.urls')),
     path('pets/', views.pet_list, name='pet_list'),
     path('request-foster/<int:pet_id>/', views.request_foster, name='request_foster'),
     path('edit-pet/<int:pet_id>/', views.edit_pet, name='edit_pet'),

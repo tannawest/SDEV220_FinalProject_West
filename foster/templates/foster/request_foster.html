@@ -11,8 +11,9 @@
         {{ form.as_p }}
         <button type="submit">Submit Request</button>
     </form>
-
-    <!-- Button to go back to the pet list -->
+    
     <a href="{% url 'foster:pet_list' %}" class="btn btn-secondary mt-4">Back to Pet List</a>
+    <a href="{% url 'foster:home' %}" class="btn btn-secondary mt-4">Return to Home</a>
+
 </body>
 </html>

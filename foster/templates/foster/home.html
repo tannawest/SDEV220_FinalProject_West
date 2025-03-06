@@ -1,13 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Foster Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            margin-bottom: 50px;
+        }
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .btn {
+            display: block;
+            padding: 20px;
+            font-size: 24px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            border-radius: 10px;
+            transition: background 0.3s;
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #007BFF;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Foster System</h1>
-    <a href="{% url 'add_pet' %}">Add a New Pet</a><br>
-    <a href="{% url 'add_foster_family' %}">Add a New Foster Family</a><br>
-    <a href="{% url 'pet_list' %}">View Pet List</a><br>
-    <a href="{% url 'foster_family_list' %}">View Foster Families</a><br>
+    <h1>Welcome to the Foster Management System</h1>
+
+    <div class="btn-container">
+        <a href="{% url 'foster:foster_family_list' %}" class="btn btn-primary">View Foster Families</a>
+        <a href="{% url 'foster:pet_list' %}" class="btn btn-secondary">View Pets</a>
+    </div>
+
 </body>
 </html>

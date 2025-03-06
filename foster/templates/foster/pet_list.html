@@ -2,28 +2,72 @@
 <html>
 <head>
     <title>Pet List</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 10px auto;
+            padding: 15px;
+            font-size: 18px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            border-radius: 10px;
+            transition: background 0.3s;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background-color: #007BFF;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+    </style>
 </head>
 <body>
     <h1>Pet List</h1>
-    
-    <!-- Button to Add a New Pet -->
-    <a href="{% url 'foster:add_pet' %}" class="btn btn-primary mt-4">Add a New Pet</a>
-    
-    <!-- List of Pets with Foster Request Links -->
+
     <ul>
         {% for pet in pets %}
             <li>
                 {{ pet.name }} - {{ pet.species }}
-                
-                <!-- Link to request fostering for this pet -->
                 <a href="{% url 'foster:request_foster' pet.id %}">Request to Foster</a>
             </li>
         {% endfor %}
     </ul>
 
-    <!-- Return to Home Button -->
-    <a href="{% url 'foster:home' %}" class="btn btn-primary mt-4">Return to Home</a>
+    <form action="{% url 'foster:add_pet' %}" method="get">
+        <button type="submit" class="btn btn-primary">Add a New Pet</button>
+    </form>
+
+    <form action="{% url 'foster:home' %}" method="get">
+        <button type="submit" class="btn btn-secondary">Return to Home</button>
+    </form>
+
 </body>
 </html>
-
-
