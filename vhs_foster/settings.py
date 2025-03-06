@@ -122,11 +122,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-    BASE_DIR / 'foster/static',
+    BASE_DIR / 'static',  # Updated to point to the new 'static' folder
 ]
+
 # Location for static files on the server
-STATIC_ROOT = BASE_DIR / 'foster' / 'static'
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Collected static files will go here
+
 
 # Media files (uploads by users)
 MEDIA_URL = '/media/'
