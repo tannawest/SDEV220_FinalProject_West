@@ -1,15 +1,13 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VHS Foster</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'foster/css/style.css' %}">
+    <title>Foster Home</title>
 </head>
 <body>
-    <h1>Welcome to the VHS Foster App</h1>
-    <img src="{% static 'foster/images/logo.png' %}" alt="Logo">
-    <script src="{% static 'foster/js/script.js' %}"></script>
+    <h1>Welcome to the Foster System</h1>
+    <a href="{% url 'foster:add_pet' %}">Add a New Pet</a><br>
+    <a href="{% url 'foster:add_foster_family' %}">Add a New Foster Family</a><br>
+    <a href="{% url 'foster:pet_list' %}">View Pet List</a><br>
+    <a href="{% url 'foster:foster_family_list' %}">View Foster Families</a><br>
 </body>
 </html>

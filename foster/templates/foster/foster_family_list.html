@@ -1,32 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Foster Families</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Foster Family List</title>
 </head>
 <body>
-    <div class="container my-5">
-        <h1 class="text-center mb-4">Foster Families</h1>
-        <a href="{% url 'add_foster_family' %}" class="btn btn-success mb-3">Add a Foster Family</a>
-        <ul class="list-group">
-            {% for family in foster_families %}
-                <li class="list-group-item">
-                    <strong>{{ family.name }}</strong><br>
-                    {{ family.address }}<br>
-                    {{ family.email }} | {{ family.phone_number }}<br>
-                    Number of Pets: {{ family.number_of_pets }}
-                </li>
-            {% empty %}
-                <li class="list-group-item">No foster families available.</li>
-            {% endfor %}
-        </ul>
-        <form action="{% url 'home' %}" method="get" class="mt-4">
-            <button type="submit" class="btn btn-primary w-100" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px;">
-                Return to Home
-            </button>
-        </form>
-    </div>
+    <h1>Foster Families</h1>
+    <ul>
+        {% for family in foster_families %}
+            <li>{{ family.name }} - {{ family.address }}</li>
+        {% endfor %}
+    </ul>
+    <form action="{% url 'foster:home' %}" method="get" class="mt-4">
+        <button type="submit" class="btn btn-primary w-100" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px;">
+            Return to Home
+        </button>
+    </form>
 </body>
 </html>

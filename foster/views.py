@@ -30,7 +30,9 @@ def request_foster(request, pet_id):
     if request.method == 'POST':
         form = FosterRequestForm(request.POST)
         if form.is_valid():
-            form.save()
+            foster_request = form.save(commit=False)  # Don't save yet
+            foster_request.pet = pet  # Link the pet to the foster request
+            foster_request.save()  # Now save the foster request with the pet linked
             return redirect('pet_list')
     else:
         form = FosterRequestForm()
